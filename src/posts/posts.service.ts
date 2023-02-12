@@ -58,7 +58,7 @@ export class PostsService {
       });
 
     // check if user owns the post
-    if (!postGetter)
+    if (postGetter.authorId.length === 0 )
       throw new ForbiddenException(
         'Access to resources denied',
       );
