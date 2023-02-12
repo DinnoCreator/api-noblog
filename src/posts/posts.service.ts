@@ -75,12 +75,13 @@ export class PostsService {
     const postGetter =
       await this.prisma.post.findUnique({
         where: {
+          authorId: userId,
           postId,
         },
       });
 
     // check if user owns the bookmark
-    if (!postGetter || postGetter.postId !== userId)
+    if (!postGetter)
       throw new ForbiddenException(
         'Access to resources denied',
       );
