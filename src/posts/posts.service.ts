@@ -87,7 +87,13 @@ export class PostsService {
         'Access to resources denied',
       );
 
-    await this.prisma.post.delete({
+   await this.prisma.link.delete({
+      where: {
+        noteId: postGetter.postId,
+      },
+    });
+
+   return await this.prisma.post.delete({
       where: {
         postId: postGetter.postId,
       },
